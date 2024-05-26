@@ -24,8 +24,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/MyBLog/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlCTG9nXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/MyBLog/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlCTG9nXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/MyBLog/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlCTG9nXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/MyBLog/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlCTG9nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/MyBLog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTXlCTG9nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/Shared/_Paging.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9QYWdpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/hoang/source/repos/EFRazorCrud/EF-Razor-page-test/Pages/Shared/_ValidationScriptsPartial.cshtml]

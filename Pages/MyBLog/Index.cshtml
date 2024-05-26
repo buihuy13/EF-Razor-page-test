@@ -1,0 +1,66 @@
+﻿@page "Blog"
+@model EFRazor.Pages.MyBLog.IndexModel
+@using EFRazor.Helpers
+@{
+    ViewData["Title"] = "Trang bài viết";
+    int i = 0;
+}
+
+<h1>Danh sách Blog</h1>
+
+<form asp-page="./Index" method="get">
+    <label class="form-label">Tìm kiếm</label>
+    <input name="SearchString"/>
+    <button class="btn btn-info" type="submit">Tìm kiếm</button>
+</form>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Tạo Blog</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article[0].Created)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Article) {
+        <tr>
+            <td>
+                @(++i)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@{
+    var pagingModel = new PagingModel()
+    {
+        currentPage = Model.currentPage,
+        countPages = Model.countPages,
+        generateUrl = (int? p) => Url.Page("/MyBLog/Index", new { p = p })
+    };
+}
+
+<partial name="_Paging"  model="@pagingModel"/>
