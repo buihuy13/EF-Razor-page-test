@@ -1,0 +1,49 @@
+﻿@page "/admin/updaterole"
+@model UpdateRoleModel
+@{
+    ViewData["Title"] = "Update Role For User Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<partial name="_StatusMessage" for="@Model.StatusMessage" />
+
+<hr />
+<h3>Set Roles For User @Model.user.UserName</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-group mb-3">
+                <label asp-for="roleNames"></label>
+                @Html.ListBoxFor(m => m.roleNames, Model.allRoles, new {
+                    id = "id-select-roles",
+                    @class="w-100"
+                })
+                <span asp-validation-for="roleNames" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Update Role</button>
+                <a asp-page="./Index" class="btn btn-info">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script src="~/lib/multiple-select/multiple-select.min.js"></script>
+    <link rel="stylesheet" href="~/lib/multiple-select/multiple-select.min.css" />
+
+    <script>
+        $("#id-select-roles").multipleSelect({
+            selectAll: false,
+            keepOpen: false,
+            isOpen: false,
+        });
+    </script>
+
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,4 +1,4 @@
-﻿using EFRazor.Models;
+using EFRazor.Models;
 using EFRazor.services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -25,17 +25,17 @@ builder.Services.Configure<MailSettings>(mailSettingsOption);
 builder.Services.AddSingleton<IEmailSender,SendMailService>();
 
 //Đăng ký dịch vụ cho Identity
-/*
 builder.Services.AddIdentity<appUser, IdentityRole>()
                 .AddEntityFrameworkStores<BlogContext>()
                 .AddDefaultTokenProviders();
-*/
 
-//Giống hệt cái trên nhưng sử dụng UI (giao diện mặc định) cho login/logout
-builder.Services.AddDefaultIdentity<appUser>()
-                .AddEntityFrameworkStores<BlogContext>()
-                .AddDefaultTokenProviders();
-
+//Đăng ký ủy quyền truy cập khi vào 1 trang
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+    options.LogoutPath = "/Identity/Account/Logout";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -60,8 +60,18 @@ builder.Services.Configure<IdentityOptions>(options =>
     // Cấu hình đăng nhập.
     options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
     options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+    options.SignIn.RequireConfirmedAccount = true;     //Xác thực tài khoản sau khi đăng ký
 });
 
+builder.Services.AddAuthentication()
+                .AddGoogle(googleOptions =>
+                {
+                    var gConfig = builder.Configuration.GetSection("Authentication:Google");
+                    googleOptions.ClientId = gConfig["ClientId"];
+                    googleOptions.ClientSecret = gConfig["ClientSecret"];
+                    // default https://localhost:7157/signin-google
+                    googleOptions.CallbackPath = "/dang-nhap-tu-google";
+                });
 
 var app = builder.Build();
 

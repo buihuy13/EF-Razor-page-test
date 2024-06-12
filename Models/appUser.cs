@@ -8,5 +8,6 @@ namespace EFRazor.Models
     {
         [StringLength(100)]
         public string? HomeAddress { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     }
 }

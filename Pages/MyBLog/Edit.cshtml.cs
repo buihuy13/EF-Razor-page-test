@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EFRazor.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EFRazor.Pages.MyBLog
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly BlogContext _context;

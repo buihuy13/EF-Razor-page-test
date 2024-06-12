@@ -1,0 +1,31 @@
+﻿@page "/admin/edit"
+@model Roles.EditModel
+@{
+    ViewData["Title"] = "Edit Role";
+}
+
+<h2>@ViewData["Title"]</h2>
+<partial name="_StatusMessage" for="@Model.StatusMessage" />
+<form method="post">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="col-md-6">
+            <label class="form-label" asp-for="Input.currentName"></label>
+            <input asp-for="Input.newName" class="form-control" disabled placeholder="@Model.Input.currentName"/>
+            <div></div>
+            <label class="form-label" asp-for="Input.newName"></label>
+            <input asp-for="Input.newName" class="form-control" autocomplete="rolename" aria-required="true" placeholder="@Model.Input.currentName" />
+            <span asp-validation-for="Input.newName" class="text-danger"></span>
+        </div>
+    </div>
+    <p>
+        <div>
+            <button class="btn btn-success" type="submit">Change</button>
+            <a asp-page="./Index" class="btn btn-info">Back</a>
+        </div>
+    </p>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

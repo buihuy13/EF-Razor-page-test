@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using EFRazor.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EFRazor.Pages.MyBLog
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly BlogContext _context;
@@ -59,7 +61,6 @@ namespace EFRazor.Pages.MyBLog
                     Article = await posts.ToListAsync();
                 }    
             }
-
         }
     }
 }

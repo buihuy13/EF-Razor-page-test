@@ -1,0 +1,54 @@
+﻿@page "/admin/users"
+@model Users.IndexModel
+@using EFRazor.Helpers
+@{
+    ViewData["Title"] = "Users List Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<hr />
+<h3 class="text-info">There are @Model.totalUsers users</h3>
+<hr />
+
+<form asp-page="./Index" method="get">
+    <label class="form-label">Tìm kiếm theo tên user</label>
+    <input name="SearchString" />
+    <button class="btn btn-info" type="submit">Tìm kiếm</button>
+</form>
+
+<partial name="_StatusMessage" for="@Model.StatusMessage" />
+<table class="table">
+    <tr>
+        <th>User Name</th>
+        <th>Role</th>
+        <th>Task</th>
+    </tr>
+    @if(Model.Users!=null)
+    {
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>
+                    @user.RoleNames
+                </td>
+                <td>
+                    <a asp-page="./ChangePassword" asp-route-id="@user.Id" class="btn btn-success btn-sm">Change Password</a>
+                    <a class="btn btn-success btn-sm" asp-page="./UpdateRole" asp-route-id="@user.Id">Update Roles</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+@{
+    var pagingModel = new PagingModel()
+    {
+        currentPage = Model.currentPage,
+        countPages = Model.countPages,
+        generateUrl = (int? p) => Url.Page("/Users/Index", new { p = p })
+    };
+}
+
+<partial name="_Paging" model="@pagingModel" />

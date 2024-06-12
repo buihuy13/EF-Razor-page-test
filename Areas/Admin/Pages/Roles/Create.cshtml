@@ -1,0 +1,30 @@
+﻿@page "/admin/create"
+@model Roles.CreateModel
+@{
+    ViewData["Title"] = "Create New Role";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div>
+                <label class="form-label" asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" autocomplete="rolename" aria-required="true" placeholder="abc..." />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <p>
+                <div>
+                    <button class="btn btn-success" type="submit">Create</button>
+                    <a asp-page="./Index" class="btn btn-info">Back</a>
+                </div>
+            </p>
+        </form>
+    </div>
+</p>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Pages\Account\" />
+    <Folder Include="wwwroot\lib\multiple-select\" />
   </ItemGroup>
 
 </Project>
