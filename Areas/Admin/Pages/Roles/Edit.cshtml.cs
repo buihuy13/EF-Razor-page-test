@@ -1,6 +1,8 @@
 ﻿using EFRazor.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,11 +11,15 @@ using System.Runtime.CompilerServices;
 
 namespace Roles
 {
+    [Authorize(Policy = "AllowEditRole")]
     public class EditModel : RolePageModel
     {
         public EditModel(RoleManager<IdentityRole> roleManager, BlogContext context) : base(roleManager, context)
         {
         }
+
+        public List<IdentityRoleClaim<string>> Claims { get; set; }
+
         [BindProperty]
         public InputModel Input { get; set; }
 
@@ -28,10 +34,10 @@ namespace Roles
             [DisplayName("Current Name")]
             public string? currentName { get; set; }
         }
-
+        public IdentityRole? role { get; set; }
         public async Task<IActionResult> OnGet(string roleid)
         {
-            var role = await _RoleManager.FindByIdAsync(roleid);
+            role = await _RoleManager.FindByIdAsync(roleid);
 
             if (role == null)
             {
@@ -43,7 +49,7 @@ namespace Roles
             {
                 currentName = role.Name
             };
-
+            Claims = await _context.RoleClaims.Where(c => c.RoleId == role.Id).ToListAsync();
             return Page();
         }
 

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EFRazor.Pages.MyBLog
 {
-    [Authorize]
+    [Authorize(Policy = "InGenZ")]
     public class IndexModel : PageModel
     {
         private readonly BlogContext _context;

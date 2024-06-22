@@ -1,5 +1,4 @@
-﻿
-using EFRazor.Models;
+﻿using EFRazor.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,7 +20,7 @@ namespace Users
             _userManager = userManager;
         }
         public class UserAndRoles : appUser
-        { 
+        {
             public string? RoleNames { get; set; }
         }
         public List<UserAndRoles>? Users { get; set; }
@@ -62,17 +61,7 @@ namespace Users
                                           UserName = u.UserName,
                                       });
 
-                
-                
-                if (!string.IsNullOrEmpty(SearchString))
-                {
-                    var searchpost = users.Where(u => u.UserName.Contains(SearchString));
-                    Users = searchpost.ToList();
-                }
-                else
-                {
-                    Users = users.ToList();
-                }
+                Users = users.ToList();
                 foreach(var user in Users)
                 {
                     var roles = await _userManager.GetRolesAsync(user);

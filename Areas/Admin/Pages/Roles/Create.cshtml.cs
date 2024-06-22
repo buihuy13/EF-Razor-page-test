@@ -18,7 +18,6 @@ namespace Roles
         public class InputModel
         {
 
-
             [StringLength(256)]
             [DisplayName("Role's Name")]
             [Required]

@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\hoang\source\repos\Identity\EF-Razor-page-test
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Roles/AddClaim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUm9sZXNcQWRkQ2xhaW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Roles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUm9sZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Roles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUm9sZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Roles/EditClaim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcUm9sZXNcRWRpdENsYWltLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Roles/Index.cshtml]
@@ -46,6 +54,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Users/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcVXNlcnNcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Users/EditUserClaim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcVXNlcnNcRWRpdFVzZXJDbGFpbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Users/EditUserRoleClaims.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cUGFnZXNcVXNlcnNcRWRpdFVzZXJSb2xlQ2xhaW1zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Areas/Admin/Pages/Users/Index.cshtml]
@@ -262,6 +278,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Pages/Shared/_AdminMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9BZG1pbk1lbnUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/hoang/source/repos/Identity/EF-Razor-page-test/Pages/Shared/_LoginPartial.cshtml]

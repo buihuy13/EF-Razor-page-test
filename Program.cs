@@ -1,9 +1,11 @@
 using EFRazor.Models;
 using EFRazor.services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Security.Requirements;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +74,43 @@ builder.Services.AddAuthentication()
                     // default https://localhost:7157/signin-google
                     googleOptions.CallbackPath = "/dang-nhap-tu-google";
                 });
+
+builder.Services.AddTransient<IAuthorizationHandler, AppAuthorizationHandler>();
+//Thêm vào các policy
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AllowEditRole", policyBuilder =>
+    {
+        //Điều kiện của chính sách
+        //Yêu cầu Role nào đó
+        policyBuilder.RequireRole("Admin");
+        policyBuilder.RequireRole("Editor");
+        //Phải đăng nhập
+        policyBuilder.RequireAuthenticatedUser();
+        policyBuilder.RequireClaim("canedit", new string[]
+        {
+            "user",
+            "post"
+        });
+    });
+
+    options.AddPolicy("InGenZ", policyBuilder =>
+    {
+        policyBuilder.RequireAuthenticatedUser();
+        policyBuilder.Requirements.Add(new GenZRequirement());
+    });
+
+    options.AddPolicy("ShowAdminMenu", policyBuilder =>
+    {
+        policyBuilder.RequireRole("Admin");
+    });
+
+    options.AddPolicy("CanUpdate", policyBuilder =>
+    {
+        policyBuilder.Requirements.Add(new CanUpdateRequirement());
+    });
+});
+
 
 var app = builder.Build();
 

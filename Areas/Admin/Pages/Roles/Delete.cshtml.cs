@@ -16,7 +16,7 @@ namespace Roles
 
         }
 
-        public async Task<IActionResult> OnPost(string roleid)
+        public async Task<IActionResult> OnPostAsync(string roleid)
         {
             var role = await _RoleManager.FindByIdAsync(roleid);
             if (role != null)

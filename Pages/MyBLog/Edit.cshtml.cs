@@ -16,9 +16,12 @@ namespace EFRazor.Pages.MyBLog
     {
         private readonly BlogContext _context;
 
-        public EditModel(BlogContext context)
+        private readonly IAuthorizationService authorizationService;
+
+        public EditModel(BlogContext context, IAuthorizationService authorizationService)
         {
             _context = context;
+            this.authorizationService = authorizationService;
         }
 
         [BindProperty]
@@ -53,7 +56,15 @@ namespace EFRazor.Pages.MyBLog
 
             try
             {
-                await _context.SaveChangesAsync();
+                var result = await authorizationService.AuthorizeAsync(this.User, Article, "CanUpdate");
+                if (result.Succeeded)
+                {
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return Content("Cannot edit");
+                }
             }
             catch (DbUpdateConcurrencyException)
             {

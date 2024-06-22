@@ -15,10 +15,12 @@ namespace Users
     {
         private readonly UserManager<appUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
-        public UpdateRoleModel(UserManager<appUser> userManager, RoleManager<IdentityRole> roleManager)
+        private readonly BlogContext _context;
+        public UpdateRoleModel(UserManager<appUser> userManager, RoleManager<IdentityRole> roleManager, BlogContext context)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;
+            this._context = context;
         }
         [TempData]
         public string? StatusMessage { get; set; }
@@ -29,6 +31,25 @@ namespace Users
         [DisplayName("Roles Selection")]
         public string[]? roleNames { get; set; }
         public SelectList allRoles { get; set; }
+        public List<IdentityRoleClaim<string>> roleClaims { get; set; }
+        public List<IdentityUserClaim<string>> userClaims { get; set; }
+
+        async Task GetClaims(string id)
+        {
+            var listRoles = from r in _context.Roles
+                            join ur in _context.UserRoles on r.Id equals ur.RoleId
+                            where ur.UserId == id
+                            select r;
+
+            roleClaims = await (from c in _context.RoleClaims
+                               join r in listRoles on c.RoleId equals r.Id
+                               select c).ToListAsync();
+
+            userClaims = await (from c in _context.UserClaims
+                         where c.UserId == id
+                         select c).ToListAsync();
+        }
+
         public async Task<IActionResult> OnGetAsync(string id)
         {
             roles = await roleManager.Roles.OrderBy(r => r.Name).ToListAsync();
@@ -43,6 +64,8 @@ namespace Users
             roleNames = (await userManager.GetRolesAsync(user)).ToArray();
 
             allRoles = new SelectList(await roleManager.Roles.Select(r => r.Name).ToListAsync());
+            await GetClaims(id);
+
             return Page();
         }
 
@@ -78,6 +101,7 @@ namespace Users
                 }
                 return Page();
             }
+            await GetClaims(id);
             return RedirectToPage("./Index");
         }
     }

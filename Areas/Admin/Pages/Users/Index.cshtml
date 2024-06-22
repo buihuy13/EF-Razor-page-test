@@ -11,12 +11,6 @@
 <h3 class="text-info">There are @Model.totalUsers users</h3>
 <hr />
 
-<form asp-page="./Index" method="get">
-    <label class="form-label">Tìm kiếm theo tên user</label>
-    <input name="SearchString" />
-    <button class="btn btn-info" type="submit">Tìm kiếm</button>
-</form>
-
 <partial name="_StatusMessage" for="@Model.StatusMessage" />
 <table class="table">
     <tr>
@@ -36,6 +30,7 @@
                 <td>
                     <a asp-page="./ChangePassword" asp-route-id="@user.Id" class="btn btn-success btn-sm">Change Password</a>
                     <a class="btn btn-success btn-sm" asp-page="./UpdateRole" asp-route-id="@user.Id">Update Roles</a>
+                    <a class="btn btn-info btn-sm" asp-page="./EditUserRoleClaims" asp-route-id="@user.Id">Edit User Claim</a>
                 </td>
             </tr>
         }

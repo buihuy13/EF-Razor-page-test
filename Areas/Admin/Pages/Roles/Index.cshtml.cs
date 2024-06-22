@@ -17,10 +17,29 @@ namespace Roles
         public IndexModel(RoleManager<IdentityRole> roleManager, BlogContext context) : base(roleManager, context)
         {
         }
-        public List<IdentityRole>? roles { get; set; }
+
+        public class RoleModel : IdentityRole
+        {
+            public string[] Claims { get; set; }
+        }
+        public List<RoleModel>? roles { get; set; }
         public async Task OnGet()
         {
-            roles = await _RoleManager.Roles.ToListAsync();
+            var r = await _RoleManager.Roles.ToListAsync();
+            roles = new List<RoleModel>();
+
+            foreach(var role in r)
+            {
+                var claims = await _RoleManager.GetClaimsAsync(role);
+                //Trả về Type của claim : giá trị của claim đó
+                var claimString = claims.Select(c => c.Type + " : " + c.Value);
+                roles.Add(new RoleModel
+                {
+                    Name = role.Name,
+                    Id = role.Id,
+                    Claims = claimString.ToArray()
+                });
+            }
         }
     }
 }

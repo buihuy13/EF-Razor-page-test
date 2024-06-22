@@ -23,7 +23,15 @@
         @foreach (var role in Model.roles)
         {
             <tr>
-                <td>@role.Name</td>
+                <td>
+                    <div>@role.Name</div>
+                    <div>
+                        @foreach(var claim in role.Claims)
+                        {
+                            <small>@claim</small><br />
+                        }
+                    </div>
+                </td>
                 <td>
                     <a asp-page="./edit" asp-route-roleid="@role.Id" class="btn btn-info">Edit</a>
                     <a asp-page="./delete" asp-route-roleid="@role.Id" class="btn btn-danger">Delete</a>

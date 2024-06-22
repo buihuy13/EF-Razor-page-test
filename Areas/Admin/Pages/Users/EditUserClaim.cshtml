@@ -1,0 +1,45 @@
+﻿@page "/admin/edituserclaim"
+@model EditUserClaimModel
+@{
+    ViewData["Title"] = "Edit User Claims Page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<partial name="_StatusMessage" for="@Model.StatusMessage" />
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="@Model.Input.currentClaimType"></label>
+                <input asp-for="@Model.Input.currentClaimType" class="form-control" placeholder="@Model.Input.currentClaimType" disabled />
+                <span asp-validation-for="@Model.Input.currentClaimType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="@Model.Input.newClaimType"></label>
+                <input asp-for="@Model.Input.newClaimType" class="form-control" placeholder="abc" autocomplete="claimtype" aria-required="true" />
+                <span asp-validation-for="@Model.Input.newClaimType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="@Model.Input.currentClaimValue"></label>
+                <input asp-for="@Model.Input.currentClaimValue" class="form-control" placeholder="@Model.Input.currentClaimValue" disabled />
+                <span asp-validation-for="@Model.Input.currentClaimValue" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="@Model.Input.newClaimValue"></label>
+                <input asp-for="@Model.Input.newClaimValue" class="form-control" placeholder="abc" autocomplete="claimtype" aria-required="true" />
+                <span asp-validation-for="@Model.Input.newClaimValue" class="text-danger"></span>
+            </div>
+            <p>
+                <button class="btn btn-success">Edit</button>
+                <a class="btn btn-info" asp-page="./Index">Back</a>
+                <button class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@Model.data.id" asp-route-claimid="@Model.data.claimid">Delete</button>
+            </p>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

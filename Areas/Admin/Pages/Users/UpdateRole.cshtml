@@ -29,6 +29,24 @@
                 <a asp-page="./Index" class="btn btn-info">Back</a>
             </div>
         </form>
+        <hr />
+        @if(Model.roleClaims.Count>0)
+        {
+            <h3>Các Claim có được từ roles: </h3>
+            @foreach(var rc in Model.roleClaims)
+            {
+                <div>@rc.ClaimType : @rc.ClaimValue</div>
+            }
+        }
+        <hr />
+        @if (Model.userClaims.Count > 0)
+        {
+            <h3>Các Claim của riêng user là: </h3>
+            @foreach (var rc in Model.userClaims)
+            {
+                <div>@rc.ClaimType : @rc.ClaimValue</div>
+            }
+        }
     </div>
 </div>
 

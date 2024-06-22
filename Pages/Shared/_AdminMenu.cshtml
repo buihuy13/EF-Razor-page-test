@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Authorization
+
+@inject IAuthorizationService authorizationService
+
+@{
+    //Nếu result succeed thì chứng tỏ người dùng đang có role là Admin
+    var result = await authorizationService.AuthorizeAsync(this.User, "ShowAdminMenu");
+}
+
+@if (result.Succeeded)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-md-2" href="#" data-bs-toggle="dropdown">
+            Manage
+        </a>
+        <div class="dropdown-menu">
+            <a asp-page="/Roles/Index" asp-area="Admin" class="dropdown-item">Roles Manage</a>
+            <div class="dropdown-divider"></div>
+            <a asp-page="/Users/Index" asp-area="Admin" class="dropdown-item">User Manage</a>
+        </div>
+    </li>
+}
